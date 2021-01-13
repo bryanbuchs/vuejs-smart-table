@@ -123,12 +123,14 @@ export default {
       if (this.sortEnabled) {
         this.order = this.order === 1 ? -1 : 1
         // this.order = this.order === 0 || this.order === -1 ? this.order + 1 : -1
-        this.store.setSort({
+        const payload = {
           sortOrder: this.order,
           sortKey: this.sortKey,
           customSort: this.customSort,
           sortId: this.id
-        })
+        }
+        this.store.setSort(payload)
+        this.$emit('sorted', payload)
       }
     }
   }
