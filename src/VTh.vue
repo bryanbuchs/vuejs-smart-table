@@ -1,5 +1,5 @@
 <template>
-  <th @click="sort" :class="sortClass" :aria-sort="ariaSortLabel">
+  <th :class="sortClass" :aria-sort="ariaSortLabel">
     <template v-if="!state.hideSortIcons">
       <slot name="ascIcon" v-if="order === -1">
         <svg
@@ -41,7 +41,7 @@
         </svg>
       </slot>
     </template>
-    <slot></slot>
+    <button @click="sort"><slot></slot></button>
   </th>
 </template>
 
