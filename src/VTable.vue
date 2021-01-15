@@ -1,12 +1,19 @@
 <template>
   <table>
-    <slot name="head"/>
-    <slot name="body" :displayData="displayData"/>
+    <slot name="caption" />
+    <slot name="head" />
+    <slot name="body" :displayData="displayData" />
+    <slot name="foot" />
   </table>
 </template>
 
 <script>
-import { doFilter, doSort, calculateTotalPages, doPaginate } from './table-utils'
+import {
+  doFilter,
+  doSort,
+  calculateTotalPages,
+  doPaginate
+} from './table-utils'
 import store from './store'
 import Vue from 'vue'
 
@@ -86,8 +93,16 @@ export default {
       return this.filteredData.length
     },
     sortedData () {
-      if ((this.state.sortKey || this.state.customSort) && this.state.sortOrder !== 0) {
-        return doSort(this.filteredData, this.state.sortKey, this.state.customSort, this.state.sortOrder)
+      if (
+        (this.state.sortKey || this.state.customSort) &&
+        this.state.sortOrder !== 0
+      ) {
+        return doSort(
+          this.filteredData,
+          this.state.sortKey,
+          this.state.customSort,
+          this.state.sortOrder
+        )
       }
 
       return this.filteredData
